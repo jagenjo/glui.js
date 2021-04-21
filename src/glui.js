@@ -37,6 +37,7 @@ GLUI.icons = {
 	circle_empty: [1,1]	
 };
 
+GLUI.cursor = "";
 
 function GLUIContext()
 {
@@ -142,7 +143,7 @@ GLUIContext.prototype.resetGUI = function()
 	if(this.context && this.context.start2D) //for webgl
 		this.context.start2D();
 	this.value_changed = false;
-	this.context.canvas.style.cursor = "";
+	GLUI.cursor = "";
 }
 
 GLUIContext.prototype.finish = function()
@@ -241,7 +242,7 @@ GLUIContext.prototype.onFileDrop = function(e)
 //called when the mouse event is produced
 GLUIContext.prototype.onMouse = function(e)
 {
-	this.context.canvas.style.cursor = "";
+	GLUI.cursor = "";
 	this.last_mouse_event = e;
 
 	if(e.type == "mousedown" && e.button == 0)
@@ -341,7 +342,7 @@ GLUIContext.prototype.Bullet = function( x,y,s, enabled, color, color_hover )
 
 	var ctx = this.context;
 	if(hover)
-		ctx.canvas.style.cursor = "arrow";
+		GLUI.cursor = "arrow";
 
 	ctx.fillColor = [1,1,1,0.2];
 	ctx.beginPath();
@@ -396,7 +397,7 @@ GLUIContext.prototype.Button = function(x,y,w,h,content,enabled,color,color_hove
 
 	var ctx = this.context;
 	if(hover)
-		ctx.canvas.style.cursor = "pointer";
+		GLUI.cursor = "pointer";
 
 	if (color !== 0) //color 0 means no bg
 	{
